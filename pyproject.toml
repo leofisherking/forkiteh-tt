@@ -1,0 +1,59 @@
+[project]
+name = "forkiteh"
+version = "0.1.0"
+description = "forkiteh test task"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.16.4",
+    "asyncpg>=0.30.0",
+    "dishka>=1.6.0",
+    "fastapi>=0.116.1",
+    "greenlet>=3.2.4",
+    "pydantic-settings>=2.10.1",
+    "sqlalchemy>=2.0.42",
+    "tenacity>=9.1.2",
+    "tronpy>=0.6.1",
+    "uvicorn>=0.35.0",
+]
+
+[dependency-groups]
+dev = [
+    "faker>=37.5.3",
+    "isort>=6.0.1",
+    "make>=0.1.6.post2",
+    "mypy>=1.17.1",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-env>=1.1.5",
+    "ruff>=0.12.7",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+pythonpath = ["src"]
+asyncio_mode = "auto"
+testpaths = [
+    "tests"
+]
+log_cli = true
+log_cli_level = "INFO"
+env = [
+    "ENV=DEV",
+    "TRON_API_KEY=",
+    "POSTGRES_SCHEMA=forkiteh_test",
+    "POSTGRES_HOST=localhost",
+    "POSTGRES_DB=postgres",
+    "POSTGRES_PORT=5432",
+    "POSTGRES_POOL_PRE_PING=True",
+    "MIN_POOL_SIZE=10",
+    "MAX_POOL_SIZE=20",
+    "POSTGRES_USER=postgres",
+    "POSTGRES_PASSWORD=postgres"
+]
+
+[tool.ruff]
+fix = true
+line-length = 89
+
+[tool.ruff.lint]
+extend-select = ["COM812", "E501"]
